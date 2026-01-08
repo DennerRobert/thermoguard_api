@@ -1,0 +1,114 @@
+[
+  {
+    "model": "core.datacenter",
+    "pk": "11111111-1111-1111-1111-111111111111",
+    "fields": {
+      "name": "Data Center Principal",
+      "location": "São Paulo, SP - Edifício Tech Tower, Piso 5",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.datacenter",
+    "pk": "22222222-2222-2222-2222-222222222222",
+    "fields": {
+      "name": "Data Center Backup",
+      "location": "Rio de Janeiro, RJ - Centro Empresarial, Bloco B",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.room",
+    "pk": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+    "fields": {
+      "data_center": "11111111-1111-1111-1111-111111111111",
+      "name": "Sala de Servidores A",
+      "description": "Sala principal com servidores de produção",
+      "target_temperature": 22.0,
+      "target_humidity": 50.0,
+      "operation_mode": "automatic",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.room",
+    "pk": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+    "fields": {
+      "data_center": "11111111-1111-1111-1111-111111111111",
+      "name": "Sala de Servidores B",
+      "description": "Sala secundária com servidores de desenvolvimento",
+      "target_temperature": 23.0,
+      "target_humidity": 55.0,
+      "operation_mode": "manual",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "sensors.sensor",
+    "pk": "cccccccc-cccc-cccc-cccc-cccccccccccc",
+    "fields": {
+      "room": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      "device_id": "AA:BB:CC:DD:EE:01",
+      "name": "Sensor Rack 1",
+      "sensor_type": "both",
+      "is_online": true,
+      "last_seen": "2024-01-15T10:30:00Z",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-15T10:30:00Z"
+    }
+  },
+  {
+    "model": "sensors.sensor",
+    "pk": "dddddddd-dddd-dddd-dddd-dddddddddddd",
+    "fields": {
+      "room": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      "device_id": "AA:BB:CC:DD:EE:02",
+      "name": "Sensor Rack 2",
+      "sensor_type": "both",
+      "is_online": true,
+      "last_seen": "2024-01-15T10:30:00Z",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-15T10:30:00Z"
+    }
+  },
+  {
+    "model": "devices.airconditioner",
+    "pk": "eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee",
+    "fields": {
+      "room": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      "name": "AC Precisão 1",
+      "status": "on",
+      "is_active": true,
+      "ir_code": {"power_on": "0x1234", "power_off": "0x5678"},
+      "esp32_device_id": "AA:BB:CC:DD:EE:FF",
+      "last_command": "2024-01-15T09:00:00Z",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-15T09:00:00Z"
+    }
+  },
+  {
+    "model": "devices.airconditioner",
+    "pk": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+    "fields": {
+      "room": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      "name": "AC Precisão 2",
+      "status": "off",
+      "is_active": true,
+      "ir_code": {"power_on": "0x1234", "power_off": "0x5678"},
+      "esp32_device_id": "AA:BB:CC:DD:FF:00",
+      "last_command": null,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  }
+]
+
+

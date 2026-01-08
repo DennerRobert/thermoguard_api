@@ -1,0 +1,42 @@
+# ThermoGuard IoT API - Development Docker Compose
+# Override for local development with hot reload
+
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - /app/__pycache__
+      - /app/.pytest_cache
+    environment:
+      - DEBUG=True
+      # - LOG_LEVEL=DEBUG
+    command: python manage.py runserver 0.0.0.0:8000
+
+  celery_worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+    environment:
+      - DEBUG=True
+      # - LOG_LEVEL=DEBUG
+    command: celery -A config worker --loglevel=debug --concurrency=1
+
+  celery_beat:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+    environment:
+      - DEBUG=True
+      # - LOG_LEVEL=DEBUG
+    command: celery -A config beat --loglevel=debug
+
+
