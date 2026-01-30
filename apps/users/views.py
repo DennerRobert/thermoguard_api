@@ -108,7 +108,7 @@ class LogoutView(APIView):
     Blacklists the refresh token to prevent further use.
     """
     
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def post(self, request: Request) -> Response:
         """
@@ -153,7 +153,7 @@ class CurrentUserView(APIView):
     Returns information about the authenticated user.
     """
     
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request: Request) -> Response:
         """
@@ -200,7 +200,7 @@ class PasswordChangeView(APIView):
     Allows authenticated users to change their password.
     """
     
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def post(self, request: Request) -> Response:
         """

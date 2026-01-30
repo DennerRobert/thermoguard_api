@@ -9,7 +9,7 @@ from typing import Any
 from django.utils import timezone
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -42,7 +42,7 @@ class AirConditionerViewSet(viewsets.ModelViewSet):
     """
     
     queryset = AirConditioner.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get_serializer_class(self):
         """Return appropriate serializer based on action."""
@@ -365,7 +365,7 @@ class RoomSettingsView(APIView):
     View for room settings management.
     """
     
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request: Request, room_id: str) -> Response:
         """Get room settings."""

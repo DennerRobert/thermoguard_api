@@ -190,15 +190,13 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'apps.core.pagination.StandardResultsPagination',
     'PAGE_SIZE': 20,
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-    'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.AnonRateThrottle',
-        'rest_framework.throttling.UserRateThrottle',
-    ],
-    'DEFAULT_THROTTLE_RATES': {
-        'anon': '100/hour',
-        'user': '1000/hour',
-        'sensor': '6000/hour',  # 100/min for sensor readings
-    },
+    # THROTTLING DESABILITADO PARA DESENVOLVIMENTO
+    'DEFAULT_THROTTLE_CLASSES': [],
+    # 'DEFAULT_THROTTLE_RATES': {
+    #     'anon': '100/hour',
+    #     'user': '1000/hour',
+    #     'sensor': '6000/hour',  # 100/min for sensor readings
+    # },
     'EXCEPTION_HANDLER': 'apps.core.exceptions.custom_exception_handler',
     'DEFAULT_FILTER_BACKENDS': [
         'rest_framework.filters.SearchFilter',

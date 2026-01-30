@@ -66,7 +66,7 @@ class DataCenterViewSet(viewsets.ModelViewSet):
     """
     
     queryset = DataCenter.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get_serializer_class(self):
         """Return appropriate serializer based on action."""
@@ -163,7 +163,7 @@ class DashboardView(APIView):
     Provides system-wide overview including all rooms and their status.
     """
     
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request: Request) -> Response:
         """
@@ -264,7 +264,7 @@ class RoomDashboardView(APIView):
     Provides detailed information about a specific room.
     """
     
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request: Request, room_id: str) -> Response:
         """
@@ -358,7 +358,7 @@ class ReportsView(APIView):
     Provides temperature history and statistics.
     """
     
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request: Request) -> Response:
         """
@@ -420,7 +420,7 @@ class StatisticsView(APIView):
     Provides min, max, avg statistics for temperature and humidity.
     """
     
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request: Request) -> Response:
         """
