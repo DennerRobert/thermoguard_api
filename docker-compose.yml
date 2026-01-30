@@ -17,7 +17,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
     ports:
-      - "5432:5432"
+      - "5433:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-thermoguard} -d ${DB_NAME:-thermoguard_db}"]
       interval: 10s
@@ -54,7 +54,7 @@ services:
     environment:
       - DEBUG=${DEBUG:-True}
       - SECRET_KEY=${SECRET_KEY:-change-me-in-production}
-      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1,172.21.2.148,api}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1,172.21.2.148,api,192.162.5.1}
       - DB_NAME=${DB_NAME:-thermoguard_db}
       - DB_USER=${DB_USER:-thermoguard}
       - DB_PASSWORD=${DB_PASSWORD:-thermoguard}
@@ -69,6 +69,7 @@ services:
       - static_files:/app/staticfiles
       - media_files:/app/media
       - ./logs:/app/logs
+      - ./:/app/
     ports:
       - "8000:8000"
     depends_on:

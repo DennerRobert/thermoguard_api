@@ -22,8 +22,9 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-change-me-in-production')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 'yes')
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,172.21.2.148').split(',')
-
+ALLOWED_HOSTS = ["*"]  # Libera todos os IPs - Para produção, especifique os IPs/domínios
+# ALLOWED_HOSTS = ["localhost", "127.0.0.1", "172.21.2.148", "192.168.5.1", "192.168.5.84"]
+print(ALLOWED_HOSTS)
 # Application definition
 DJANGO_APPS = [
     'daphne',
@@ -173,11 +174,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # REST Framework Configuration
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'apps.core.authentication.APIKeyAuthentication',
+        #'rest_framework_simplejwt.authentication.JWTAuthentication',
+        #'apps.core.authentication.APIKeyAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
@@ -317,36 +319,36 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'simple',
         },
-        'file': {
-            'level': 'INFO',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': BASE_DIR / 'logs' / 'thermoguard.log',
-            'maxBytes': 10485760,  # 10MB
-            'backupCount': 10,
-            'formatter': 'verbose',
-        },
-        'error_file': {
-            'level': 'ERROR',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': BASE_DIR / 'logs' / 'errors.log',
-            'maxBytes': 10485760,
-            'backupCount': 10,
-            'formatter': 'verbose',
-        },
+        # 'file': {
+        #     'level': 'INFO',
+        #     'class': 'logging.handlers.RotatingFileHandler',
+        #     'filename': BASE_DIR / 'logs' / 'thermoguard.log',
+        #     'maxBytes': 10485760,  # 10MB
+        #     'backupCount': 10,
+        #     'formatter': 'verbose',
+        # },
+        # 'error_file': {
+        #     'level': 'ERROR',
+        #     'class': 'logging.handlers.RotatingFileHandler',
+        #     'filename': BASE_DIR / 'logs' / 'errors.log',
+        #     'maxBytes': 10485760,
+        #     'backupCount': 10,
+        #     'formatter': 'verbose',
+        # },
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'file'],
+            'handlers': ['console'],
             'level': os.getenv('LOG_LEVEL', 'INFO'),
             'propagate': True,
         },
         'apps': {
-            'handlers': ['console', 'file', 'error_file'],
+            'handlers': ['console'],
             'level': os.getenv('LOG_LEVEL', 'DEBUG'),
             'propagate': False,
         },
         'thermoguard': {
-            'handlers': ['console', 'file', 'error_file'],
+            'handlers': ['console'],
             'level': os.getenv('LOG_LEVEL', 'DEBUG'),
             'propagate': False,
         },
